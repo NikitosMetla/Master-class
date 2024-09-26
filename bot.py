@@ -5,7 +5,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-bot_token = "7646208854:AAGR3dJJN8NROK1XmQ1oLUsNyVWmsi18GkI"
+bot_token = ""
 bot = Bot(token=bot_token, parse_mode="html")
 storage_bot = MemoryStorage()
 router = Router()
