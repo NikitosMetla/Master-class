@@ -2,7 +2,7 @@ import asyncio
 
 from aiogram import Bot, Dispatcher, Router, F
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardButton
+from aiogram.types import Message, InlineKeyboardButton, CallbackQuery
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 bot_token = ""
@@ -18,6 +18,11 @@ async def send_welcome(message: Message):
     keyboard.row(InlineKeyboardButton(text="Нажми на меня", callback_data="tap_to_me"))
     await message.reply(text="Привет! Я твой бот. Введи /help, чтобы узнать больше.",
                         reply_markup=keyboard.as_markup())
+
+@router.callback_query(F.data == "tap_to_me")
+async def send_welcome(call: CallbackQuery):
+    await call.message.reply(text="Ты нажал на кнопку")
+    await call.message.delete()
 
 # Хендлер для команды /help
 @router.message(F.text == "/help")
